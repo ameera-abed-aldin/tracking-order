@@ -15,6 +15,6 @@ public class Address {
     private int addressId;
     private String city;
     private String addDetails;
-@OneToOne (mappedBy = "address")
+    @OneToOne (mappedBy = "address")
     private Custmer custmer;
 }

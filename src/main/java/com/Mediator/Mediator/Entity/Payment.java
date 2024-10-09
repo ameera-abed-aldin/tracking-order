@@ -18,5 +18,8 @@ public class Payment {
 
     private float amountWithShipping;
     private float amountWithoutShipping;
+    @OneToOne
+    @JoinColumn(name = "orderId", referencedColumnName = "orderId")
+    private Orders order;
 
 }

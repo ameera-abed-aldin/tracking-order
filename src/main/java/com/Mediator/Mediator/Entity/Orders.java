@@ -33,5 +33,8 @@ public class Orders {
             inverseJoinColumns = @JoinColumn(name = "ProductId"))
     private Set<Product> product;
 
+    @OneToOne(mappedBy = "order")
+    private Payment payment;
+
 
 }
