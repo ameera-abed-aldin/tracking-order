@@ -5,24 +5,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int UserId;
-    private String UserName;
-    private String UserPhone;
-    private String Passward;
+    private int paymentId;
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private PaymentStatus status;
 
-    @OneToMany(mappedBy = "user")
-    private List<Orders> orders;
-
+    private float amountWithShipping;
+    private float amountWithoutShipping;
 
 }
