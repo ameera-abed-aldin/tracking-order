@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+
+import java.util.Set;
+
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -18,5 +22,15 @@ public class Orders {
     private Date createdDate;
     private String status;
     private  Date expectedArriveDate;
+
+    @ManyToOne
+    @JoinColumn(name = "UserId",referencedColumnName = "UserId")
+    private User user;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
+    @JoinTable(name = "ORDERS_PRODUCT_MAPPING", joinColumns = @JoinColumn(name = "orderId"),
+            inverseJoinColumns = @JoinColumn(name = "ProductId"))
+    private Set<Product> product;
+
 
 }
