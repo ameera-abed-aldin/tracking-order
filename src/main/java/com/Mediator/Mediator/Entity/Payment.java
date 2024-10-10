@@ -1,14 +1,16 @@
 package com.Mediator.Mediator.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
-@Data
+@Setter
+@Getter
+
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "payment")
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +20,7 @@ public class Payment {
 
     private float amountWithShipping;
     private float amountWithoutShipping;
+
     @OneToOne
     @JoinColumn(name = "orderId", referencedColumnName = "orderId")
     private Orders order;

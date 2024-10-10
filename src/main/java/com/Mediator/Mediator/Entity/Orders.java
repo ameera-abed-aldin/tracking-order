@@ -1,9 +1,9 @@
 package com.Mediator.Mediator.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 
@@ -12,9 +12,12 @@ import java.util.Set;
 
 
 @Entity
-@Data
+@Setter
+@Getter
+
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "orders")
 public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +26,7 @@ public class Orders {
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
     private  Date expectedArriveDate;
+    private float amount;
 
     @ManyToOne
     @JoinColumn(name = "UserId",referencedColumnName = "UserId")
@@ -32,9 +36,13 @@ public class Orders {
     @JoinTable(name = "ORDERS_PRODUCT_MAPPING", joinColumns = @JoinColumn(name = "orderId"),
             inverseJoinColumns = @JoinColumn(name = "ProductId"))
     private Set<Product> product;
-
+    @JsonIgnore
     @OneToOne(mappedBy = "order")
     private Payment payment;
+
+    @ManyToOne
+    @JoinColumn(name = "custmerId",referencedColumnName = "custmerId")
+    private Custmer custmer;
 
 
 }

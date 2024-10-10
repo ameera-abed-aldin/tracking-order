@@ -1,16 +1,17 @@
 package com.Mediator.Mediator.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +21,7 @@ public class User {
     private String Passward;
     @Enumerated(EnumType.STRING)
     private Role role;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Orders> orders;
 
