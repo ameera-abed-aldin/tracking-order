@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Setter
@@ -25,5 +26,5 @@ public class Custmer {
 private Address address;
     @JsonIgnore
 @OneToMany(mappedBy = "custmer")
-    private List<Orders> orders;
+    private Set<Orders> orders;
 }

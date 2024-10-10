@@ -4,12 +4,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.Date;
-
-
 import java.util.Set;
-
 
 @Entity
 @Setter
@@ -36,7 +32,7 @@ public class Orders {
     @JoinTable(name = "ORDERS_PRODUCT_MAPPING", joinColumns = @JoinColumn(name = "orderId"),
             inverseJoinColumns = @JoinColumn(name = "ProductId"))
     private Set<Product> product;
-    @JsonIgnore
+
     @OneToOne(mappedBy = "order")
     private Payment payment;
 

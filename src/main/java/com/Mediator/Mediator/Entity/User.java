@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Setter
@@ -23,7 +24,7 @@ public class User {
     private Role role;
     @JsonIgnore
     @OneToMany(mappedBy = "user")
-    private List<Orders> orders;
+    private Set<Orders> orders;
 
 
 }

@@ -31,7 +31,7 @@ public class Product {
     private String description;
     private int quantity;
     private String img;
-
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
     @JoinTable(name = "ORDERS_PRODUCT_MAPPING", joinColumns = @JoinColumn(name = "productId"),
             inverseJoinColumns = @JoinColumn(name = "orderId"))
